@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<main class="flex-grow-1">
+    <div class="container mt-5">
+        <h2>Register Customer</h2>
+        <form action="#" method="post" th:action="@{/register}" th:object="${user}">
+            <label for="name">Name: </label>
+            <input class="form-control" id="name" th:field="*{name}" th:placeholder="Name" type="text"/>
+            <div style="color:red;" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></div>
+            <br>
+
+            <label for="lastName">Last Name: </label>
+            <input class="form-control" id="lastName" th:field="*{lastName}" th:placeholder="LastName" type="text"/>
+            <div style="color:red;" th:errors="*{lastName}" th:if="${#fields.hasErrors('lastName')}"></div>
+            <br>
+
+            <label for="email">Email: </label>
+            <input class="form-control" id="email" th:field="*{email}" th:placeholder="Email" type="email"/>
+            <div style="color:red;" th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></div>
+            <br>
+
+            <label for="password">Password: </label>
+            <input class="form-control" id="password" th:field="*{password}" th:placeholder="Birthday" type="password"/>
+            <div style="color:red;" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"></div>
+            <br>
+
+            <button class="btn btn-primary" type="submit">Register</button>
+        </form>
+    </div>
+</main>
+
+</body>
+</html>
