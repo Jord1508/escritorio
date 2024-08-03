@@ -1,0 +1,16 @@
+<div>
+  <h2>Login</h2>
+  <form>
+    <div>
+      <label for="username">Username: </label>
+      <input type="text" id="username" name="username" [(ngModel)]="username">
+    </div>
+    <br>
+    <div>
+      <label for="password">Password: </label>
+      <input matInput type="password" id="password" name="password" [(ngModel)]="password">
+    </div>
+    <br>
+    <button mat-raised-button type="submit" (click)="login()">Login</button>
+  </form>
+</div>

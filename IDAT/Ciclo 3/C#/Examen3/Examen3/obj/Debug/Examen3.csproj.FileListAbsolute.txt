@@ -1,0 +1,10 @@
+C:\Users\user\Desktop\Jord\IDAT\Ciclo 3\C#\Examen3\Examen3\bin\Debug\Examen3.exe.config
+C:\Users\user\Desktop\Jord\IDAT\Ciclo 3\C#\Examen3\Examen3\bin\Debug\Examen3.exe
+C:\Users\user\Desktop\Jord\IDAT\Ciclo 3\C#\Examen3\Examen3\bin\Debug\Examen3.pdb
+C:\Users\user\Desktop\Jord\IDAT\Ciclo 3\C#\Examen3\Examen3\obj\Debug\Examen3.csprojAssemblyReference.cache
+C:\Users\user\Desktop\Jord\IDAT\Ciclo 3\C#\Examen3\Examen3\obj\Debug\Examen3.Form1.resources
+C:\Users\user\Desktop\Jord\IDAT\Ciclo 3\C#\Examen3\Examen3\obj\Debug\Examen3.Properties.Resources.resources
+C:\Users\user\Desktop\Jord\IDAT\Ciclo 3\C#\Examen3\Examen3\obj\Debug\Examen3.csproj.GenerateResource.cache
+C:\Users\user\Desktop\Jord\IDAT\Ciclo 3\C#\Examen3\Examen3\obj\Debug\Examen3.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\Jord\IDAT\Ciclo 3\C#\Examen3\Examen3\obj\Debug\Examen3.exe
+C:\Users\user\Desktop\Jord\IDAT\Ciclo 3\C#\Examen3\Examen3\obj\Debug\Examen3.pdb

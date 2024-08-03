@@ -1,0 +1,31 @@
+////Realizar un programa que rellene un vector con 5 valores ingresados por el usuario y los
+////muestre por pantalla.
+
+
+Algoritmo Ejercicio1
+	
+	Dimension vector(5) 
+	definir i, vector Como Entero
+	Escribir "Ingrese 5 valores, por favor: " 
+	
+	
+	para i=0 Hasta 4 Hacer
+		
+		leer vector(i) 
+		
+	FinPara
+	
+	
+	
+	para i=0 Hasta 4 Hacer 
+		
+		escribir vector(i) " " Sin Saltar
+		
+	FinPara
+	
+	Escribir " " 
+	
+	
+	
+	
+FinAlgoritmo

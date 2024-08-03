@@ -1,0 +1,1 @@
+001,jose,hojas,50,100,50,30,Negrita,La Victoria

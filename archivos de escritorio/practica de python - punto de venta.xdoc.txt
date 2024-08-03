@@ -1,0 +1,59 @@
+### Cosntruccion de algunas funciones
+def basic_encabezado(titulo,line_):
+    print(line_ * 50)
+    print("{:^50}".format(titulo))
+    print(line_ * 50)
+#Variable de uso lista menu
+main_nav ='''#######   Ingrese su numero: ########\n1.- Ingresar pedido\n2.- Cerrar Cuenta\n3.- Cerrar Caja\n
+Presione X para cerrar sistema!!\n>>Ingrese la Opción: 
+'''
+menualimento = '''******  Alimento:\n** Arroz con Pollo\n** Pasta\n** Huancaina\n
+++++++  Bebidas:\n++ Agua con Gas\n++ Cocacola\n++ Fanta\n***Para finalizar digite   rt'''
+a = 0
+mesa1 = []
+mesa2 = []
+subtotalmesa1 = []
+subtotalmesa2 = []
+i = 0
+#########
+while True:
+    val_menu_lista = ['1', '2', '3']
+    menu = input(main_nav).lower()
+    if menu == val_menu_lista[0]:
+        while True:
+            basic_encabezado('Elija el N de mesa o preione cero "0" para salir:','>')
+            nmesa = int(input('> '))
+            if nmesa == 1 :
+                basic_encabezado('Mesa numero 1','-')
+                print(menualimento)
+                while True:
+                    alimento = input('>>> ')
+                    if alimento == 'rt':
+                        break
+                    mesa1.append(alimento)
+            if nmesa == 2 :
+                basic_encabezado('Mesa numero 2','-')
+                print(menualimento)
+                while True:
+                    alimento = input('>>> ')
+                    if alimento == 'rt':
+                        break
+                    mesa2.append(alimento)
+            elif nmesa == 0:
+                break
+        subtotalmesa1.append(mesa1)
+        subtotalmesa2.append(mesa2)
+    elif menu == val_menu_lista[1]:
+        basic_encabezado('Seccion de sacar la cuenta de una mesa','>')
+        print('\n******** Resumen mesa 1')
+        print(subtotalmesa1)
+        print('\n******** Resumen mesa 2')
+        print(subtotalmesa2)
+    elif menu == val_menu_lista[2]:
+        basic_encabezado('Seccion de Cierre de caja de venta del dia','>')
+    elif menu == 'x':
+        basic_encabezado('Funcion Salir del programa se ejecutó!!\nGRACIAS', '#')
+        break
+    else:
+        basic_encabezado('Valor invalido, Intentelo nuevamente!!', '!')
+

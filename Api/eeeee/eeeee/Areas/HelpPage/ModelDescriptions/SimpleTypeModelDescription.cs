@@ -1,0 +1,6 @@
+namespace eeeee.Areas.HelpPage.ModelDescriptions
+{
+    public class SimpleTypeModelDescription : ModelDescription
+    {
+    }
+}

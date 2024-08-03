@@ -1,0 +1,23 @@
+#Llene una lista que contenga los numeros pares, comprendidos
+#entre el 1 y el 20
+
+lista = []
+nrospares=0
+for i in range(1,21)
+	if i % 2 ==0:
+		nrospares+=i
+		lista.append(nrospares)
+print(f'\nTabla de multiplicar: \n{lista}')
+######EXPLICACION DEL ERROR
+
++ La variable 'nrospares' se esta usando como un contador
++ La indicacion es anidar los numeros pares en la cadena o lista vacia
++ En la solucion se reemplaza la variable 'nrospares' por la variable 'i' que es el que incrementa en cada ciclo del 'FOR'
++ La condicional 'IF' es quien hace que no se aniden las numeros que tengan el resto o residuo en 1
+
+*********SOLUCION ALUMNO******
+lista = []
+for i in range(1,21):
+	if i % 2 == 0:
+		lista.append(i)
+print(f'\nLista de numeros pares: \n{lista}')

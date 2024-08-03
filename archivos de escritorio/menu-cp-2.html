@@ -1,0 +1,674 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Menu Desplegable Responsive</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<style>
+
+body {background:#FEFEFE;}
+
+.menu_bar {
+  display:none;
+}
+
+header.header-v2 {
+  width: 100%;
+}
+
+header.header-v2 nav {
+  background:#fff;
+  z-index:1000;
+  max-width: 1000px;
+  width: 95%;
+  margin:20px auto;
+}
+
+header.header-v2 nav ul {
+  list-style:none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+header.header-v2 nav ul li {
+  display:inline-block;
+  /*La razon por la que no usamos floar en vez de inline-block es
+  porque no vamos a poder usar overflows en el header.header-v2 nav ul*/
+  /*position: relative;*/
+}
+header.header-v2 nav ul > li a{
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+
+header.header-v2 nav ul li:hover .children {
+  display: block;
+}
+
+/*Submenu*/
+header.header-v2 nav ul li.submenu > a{
+  display: block;
+  position: relative;
+}
+header.header-v2 nav ul li.submenu > a:after{
+  content: '';
+  background-color:transparent;
+  height: 3px;
+  width: 100%;
+  left: 0;
+  position: absolute;
+  bottom: 0;
+}
+header.header-v2 nav ul li.submenu > a:hover::after{
+  content: '';
+  background-color: #94D0DE;
+  height: 3px;
+  width: 100%;
+  left: 0;
+  position: absolute;
+  bottom: 0;
+}
+header.header-v2 nav ul li .children {
+  background:#fff;
+  position: absolute;
+  display: none;
+  /*width: 150%;*/
+  z-index: 1000;
+  left: 0;
+  padding: 15px;
+}
+
+header.header-v2 nav ul li .children ul{
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 20px;
+}
+
+
+header.header-v2 nav ul li .children li {
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,.5);
+  /*Usamos overflow hidden porque aqui si vamos a necesitar usar float*/
+}
+
+header.header-v2 nav ul li .children li a {
+  display: block;
+  padding: 10px 0;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+header.header-v2 nav ul .children li a span {
+  float: right;
+  position: relative;
+  top:3px;
+  margin-right: 0px;
+  margin-left:10px;
+}
+
+header.header-v2 nav ul li .children .subchildren{
+  padding: 0 30px 0 0;
+  margin: 0;
+}
+
+header.header-v2 nav ul li .children .subchildren li{
+  display: block;
+
+}
+
+header.header-v2 nav ul li .children .subchildren li ul{
+  display: block;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+header.header-v2 nav ul li a {
+  text-decoration: none;
+  display: inline-block;
+  padding:20px;
+  color:#000;
+}
+
+header.header-v2 nav ul li:hover {
+  background:transparent;
+}
+
+header.header-v2 nav ul li span {
+  margin-right:10px;
+}
+
+header.header-v2 nav ul li .caret {
+  position: relative;
+  top: 3px;
+  margin-left: 10px;
+  margin-right: 0;
+}
+
+@media screen and (max-width:800px) {
+  .menu_bar {
+    width: 100%;
+    display: block;
+    position: fixed;
+    top:0;
+  }
+
+  .menu_bar .bt-menu {
+    display: block;
+    padding: 20px;
+    color:#fff;
+    overflow: hidden;
+    font-size:25px;
+    font-weight:bold;
+    text-decoration: none;
+  }
+
+  .menu_bar span {
+    float: right;
+    font-size: 40px;
+  }
+
+  header.header-v2 nav {
+    width: 100%;
+    height: calc(100% - 80px);
+    right:100%; 
+    /*Con esto ocultamos el menu hacia la derecha, lo agregamos hasta el final*/
+    margin: 0;
+    position:fixed;
+    overflow:scroll;
+  }
+
+  header.header-v2 nav ul li {
+    display: block;
+    border-bottom:1px solid rgba(255,255,255,.5);
+  }
+
+  header.header-v2 nav ul li a {
+    display: block;
+  }
+
+  header.header-v2 nav ul li:hover .children{
+    display: none;
+  }
+
+  header.header-v2 nav ul li .children {
+    width: 100%;
+    position: absolute;
+    left: 10px;
+    top:0;
+    /*position: relative;*/
+    /*display: block;*/
+  }
+  header.header-v2 nav ul li .children li{
+    display: block;
+  }
+
+  header.header-v2 nav ul li .children li a{
+    margin-left:20px;
+  }
+  header.header-v2 nav ul li .children .subchildren{
+    display: none;
+    padding: 0;
+    margin: 0;
+  }
+  header.header-v2 nav ul li .children .subchildren li{
+
+  }
+  header.header-v2 nav ul li .children .subchildren li ul{
+    display: none;
+  }
+
+  header.header-v2 nav ul li .caret {
+    float: right;
+  }
+}
+
+  </style>
+</head>
+
+<body style="background-color: #efefef;">
+  <header>
+    <div class="menu_bar">
+      <a href="#" class="bt-menu"><span class="icon-list2"></span>Menu</a>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="/lo-nuevo">Lo Nuevo</a></li>
+        <li class="submenu">
+          <a href="#">Hombre<span class="caret icon-arrow-down6"></span></a>
+          <ul class="children">
+            <li><a href="#"><b>Destacados</b></a>
+              <ul class="subchildren">
+                <li><a href="/hombre/862?PS=48&amp;map=c,productClusterIds&amp;O=OrderByReleaseDateDESC">Exclusivo online</a></li>
+                <li><a href="/hombre/1133?PS=48&amp;map=c,productClusterIds&amp;O=OrderByReleaseDateDESC">Lo nuevo</a></li>
+                <li><a href="/hombre/1018?PS=48&amp;map=c,productClusterIds&amp;O=OrderByReleaseDateDESC">Últimas tallas</a></li>
+                <li><a href="/hombre/362?PS=48&amp;map=c,productClusterIds&amp;O=OrderByReleaseDateDESC">Reposición Stock</a></li>
+              </ul>              
+            </li>
+
+            <li><a href="#"><b>Calzado</b></a>
+              <ul class="subchildren">
+                <li><a href="/hombre/calzado/1133?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Novedades</a></li>
+                <li><a href="/hombre/calzado/zapatillas?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Zapatillas</a></li>
+                <li><a href="/hombre/calzado/botines?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Botines</a></li>
+                <li><a href="/hombre/calzado/zapatos?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Zapatos</a></li>
+                <li><a href="/hombre/calzado/572?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Casual</a></li>
+                <li><a href="/hombre/calzado/229?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Urbano</a></li>
+                <li><a href="/hombre/calzado/831?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Fútbol</a></li>
+                <li><a href="/hombre/calzado/1101?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Outdoor</a></li>
+                <li><a href="/hombre/calzado/180?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Industrial</a></li>
+                <li><a href="/hombre/calzado/sandalias?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Sandalias</a></li>
+                <li><a href="/hombre/calzado/chimpunes?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Chimpunes</a></li>
+                <li><a href="/hombre/calzado/898?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Running</a></li>
+                <li><a href="/hombre/calzado/695?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Trail running</a></li>
+                <li><a href="/hombre/calzado/845?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Trekking</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#"><b>Ropa</b></a>
+              <ul class="subchildren">
+                <li><a href="/hombre/ropa/1133?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Novedades</a></li>
+                <li><a href="/hombre/ropa/casacas?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Casacas</a></li>
+                <li><a href="/hombre/ropa/chalecos?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Chalecos</a></li>
+                <li><a href="/hombre/ropa/poleras?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Poleras</a></li>
+                <li><a href="/hombre/ropa/pantalones?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Pantalones</a></li>
+                <li><a href="/hombre/ropa/buzos?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Buzos</a></li>
+                <li><a href="/hombre/ropa/camisas?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Camisas</a></li>
+                <li><a href="/hombre/ropa/polos?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Polos</a></li>
+                <li><a href="/hombre/ropa/shorts?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Shorts</a></li>
+                <li><a href="/hombre/ropa/camisetas?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Camisetas</a></li>
+                <li><a href="/hombre/ropa/poly-tees?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Poly tees</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#"><b>Accesorios</b></a>
+              <ul class="subchildren">
+                <li><a href="/hombre/accesorios/1133?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Novedades</a></li>
+                <li><a href="/hombre/accesorios/billeteras?map=c,c,c&amp;PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Billeteras</a></li>
+                <li><a href="/hombre/accesorios/gorros?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Gorros</a></li>
+                <li><a href="/hombre/accesorios/medias?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Medias</a></li>
+                <li><a href="/hombre/accesorios/correas?map=c,c,c&amp;PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Correas</a></li>
+                <li><a href="/hombre/accesorios/pelotas?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Pelotas</a></li>
+                <li><a href="/hombre/accesorios/pasadores?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Pasadores</a></li>
+                <li><a href="/hombre/accesorios/guantes?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Guantes</a></li>
+                <li><a href="/hombre/accesorios/canilleras?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Canilleras</a></li>
+                <li><a href="/hombre/accesorios/shoe-care?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Shoe care</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#"><b>Maletería</b></a>
+              <ul class="subchildren">
+                <li><a href="/hombre/accesorios/mochilas?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Mochilas</a></li>
+                <li><a href="/hombre/accesorios/maletas?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Maletas</a></li>
+                <li><a href="/hombre/accesorios/morrales?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Morrales</a></li>
+                <li><a href="/hombre/accesorios/maletines?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Maletines</a></li>
+                <li><a href="/hombre/accesorios/bolsos?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Bolsos</a></li>
+                <li><a href="/hombre/accesorios/canguros?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Canguros</a></li>
+                <li><a href="/hombre/accesorios/messengers?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Messengers</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#"><b>Deportes</b></a>
+              <ul class="subchildren">
+                <li><a href="/hombre/estilos/deportivo/futbol">Fútbol</a></li>
+                <li><a href="/hombre/estilos/deportivo/outdoor">Outdoor</a></li>
+                <li><a href="/hombre/estilos/deportivo/trekking">Trekking</a></li>
+                <li><a href="/hombre/estilos/deportivo/running">Running</a></li>
+                <li><a href="/hombre/estilos/deportivo/trailrunning">Trail running</a></li>
+              </ul>
+            </li> 
+
+            <li><a href="#"><b>Estilos</b></a>
+              <ul class="subchildren">
+                <li><a href="/hombre/estilos/casual">Casual</a></li>
+                <li><a href="/hombre/estilos/urbano">Urbano</a></li>
+                <li><a href="/hombre/estilos/deportivo">Deportivo</a></li>
+                <li><a href="/hombre/estilos/industrial">Industrial</a></li>
+              </ul>
+            </li> 
+
+          </ul>
+        </li>
+
+        <li class="submenu">
+          <a href="#">Mujer<span class="caret icon-arrow-down6"></span></a>
+          <ul class="children">
+            <li><a href="#"><b>Destacados</b></a>
+              <ul class="subchildren">
+                <li><a href="/mujer/862?PS=48&amp;map=c,productClusterIds&amp;O=OrderByReleaseDateDESC">Exclusivo online</a></li>
+                <li><a href="/mujer/1133?PS=48&amp;map=c,productClusterIds&amp;O=OrderByReleaseDateDESC">Lo nuevo</a></li>
+                <li><a href="/mujer/1018?PS=48&amp;map=c,productClusterIds&amp;O=OrderByReleaseDateDESC">Últimas tallas</a></li>
+                <li><a href="/mujer/362?PS=48&amp;map=c,productClusterIds&amp;O=OrderByReleaseDateDESC">Reposición Stock</a></li>
+              </ul>              
+            </li>
+
+            <li><a href="#"><b>Calzado</b></a>
+              <ul class="subchildren">
+                <li><a href="/mujer/calzado/1133?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Novedades</a></li>
+                <li><a href="/mujer/calzado/zapatillas?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Zapatillas</a></li>
+                <li><a href="/mujer/calzado/botines?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Botines</a></li>
+                <li><a href="/mujer/calzado/botas?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Botas</a></li>
+                <li><a href="/mujer/calzado/zapatos?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Zapatos</a></li>
+                <li><a href="/mujer/calzado/572?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Casual</a></li>
+                <li><a href="/mujer/calzado/229?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Urbano</a></li>
+                <li><a href="/mujer/calzado/1101?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Outdoor</a></li>
+                <li><a href="/mujer/180?PS=48&amp;map=c,productClusterIds&amp;O=OrderByReleaseDateDESC">Industrial</a></li>
+                <li><a href="/mujer/calzado/sandalias?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Sandalias</a></li>
+                <li><a href="/mujer/calzado/898?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Running</a></li>
+                <li><a href="/mujer/calzado/695?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Trail running</a></li>
+                <li><a href="/mujer/calzado/845?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Trekking</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#"><b>Ropa</b></a>
+              <ul class="subchildren">
+                <li><a href="/mujer/ropa/1133?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Novedades</a></li>
+                <li><a href="/mujer/ropa/casacas?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Casacas</a></li>
+                <li><a href="/mujer/ropa/chalecos?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Chalecos</a></li>
+                <li><a href="/mujer/ropa/poleras?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Poleras</a></li>
+                <li><a href="/mujer/ropa/pantalones?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Pantalones</a></li>
+                <li><a href="/mujer/ropa/joggers?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Joggers</a></li>
+                <li><a href="/mujer/ropa/buzos?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Buzos</a></li>
+                <li><a href="/mujer/ropa/chompas?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Chompas</a></li>
+                <li><a href="/mujer/ropa/calentadores?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Calentadores</a></li>
+                <li><a href="/mujer/ropa/blusas?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Blusas</a></li>
+                <li><a href="/mujer/ropa/polos?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Polos</a></li>
+                <li><a href="/mujer/ropa/shorts?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Shorts</a></li>
+                <li><a href="/mujer/ropa/tank?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Tanks</a></li>
+                <li><a href="/mujer/ropa/tops?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Tops</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#"><b>Accesorios</b></a>
+              <ul class="subchildren">
+                <li><a href="/mujer/accesorios?PS=48&amp;map=c,c&amp;O=OrderByReleaseDateDESC">Novedades</a></li>
+                <li><a href="/mujer/accesorios/mochilas?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Billeteras</a></li>
+                <li><a href="/mujer/accesorios/gorros?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Gorros</a></li>
+                <li><a href="/mujer/accesorios/canguros?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Canguros</a></li>
+                <li><a href="/mujer/accesorios/carteras?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Carteras</a></li>
+                <li><a href="/mujer/accesorios/medias?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Medias</a></li>
+                <li><a href="/mujer/accesorios/pasadores?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Pasadores</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#"><b>Deportes</b></a>
+              <ul class="subchildren">
+                <li><a href="/mujer/estilos/deportivo/outdoor">Outdoor</a></li>
+                <li><a href="/mujer/estilos/deportivo/trekking">Trekking</a></li>
+                <li><a href="/mujer/estilos/deportivo/running">Running</a></li>
+                <li><a href="/mujer/estilos/deportivo/trailrunning">Trail running</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#"><b>Estilos</b></a>
+              <ul class="subchildren">
+                <li><a href="/mujer/estilos/casual">Casual</a></li>
+                <li><a href="/mujer/estilos/urbano">Urbano</a></li>
+                <li><a href="/mujer/estilos/deportivo">Deportivo</a></li>
+                <li><a href="/mujer/estilos/formal">Formal</a></li>
+                <li><a href="/mujer/estilos/industrial">Industrial</a></li>
+              </ul>
+            </li> 
+
+          </ul>
+        </li>
+
+        <li class="submenu">
+          <a href="#">Niños<span class="caret icon-arrow-down6"></span>
+          </a>
+          <ul class="children">
+            <li><a href="#"><b>Destacados</b></a>
+              <ul class="subchildren">
+                <li><a href="/ninos/862?PS=48&amp;map=c,productClusterIds&amp;O=OrderByReleaseDateDESC">Exclusivo online</a></li>
+                <li><a href="/ninos/1133?PS=48&amp;map=c,productClusterIds&amp;O=OrderByReleaseDateDESC">Lo nuevo</a></li>
+                <li><a href="/ninos/1018?PS=48&amp;map=c,productClusterIds&amp;O=OrderByReleaseDateDESC">Últimas tallas</a></li>
+                <li><a href="/ninos/362?PS=48&amp;map=c,productClusterIds&amp;O=OrderByReleaseDateDESC">Reposición Stock</a></li>
+              </ul>              
+            </li>
+
+            <li><a href="#"><b>Calzado</b></a>
+              <ul class="subchildren">
+                <li><a href="/ninos/calzado/1133?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Novedades</a></li>
+                <li><a href="/ninos/calzado/zapatillas?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Zapatillas</a></li>
+                <li><a href="/ninos/calzado/botines?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Botines</a></li>
+                <li><a href="/ninos/572?PS=48&amp;map=c,productClusterIds&amp;O=OrderByReleaseDateDESC">Casual</a></li>
+                <li><a href="/ninos/229?PS=48&amp;map=c,productClusterIds&amp;O=OrderByReleaseDateDESC">Urbano</a></li>
+                <li><a href="/ninos/calzado/831?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Fútbol</a></li>
+                <li><a href="/ninos/calzado/chimpunes?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Chimpunes</a></li>
+                <li><a href="/ninos/calzado/sandalias?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Sandalias</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#"><b>Ropa</b></a>
+              <ul class="subchildren">
+                <li><a href="/ninos/ropa/1133?PS=48&amp;map=c,c,productClusterIds&amp;O=OrderByReleaseDateDESC">Novedades</a></li>
+                <li><a href="/ninos/ropa/poleras?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Poleras</a></li>
+                <li><a href="/ninos/ropa/pantalones?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Pantalones</a></li>
+                <li><a href="/ninos/ropa/polos?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Polos</a></li>
+                <li><a href="/ninos/ropa/poly-tees?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Poly tees</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#"><b>Accesorios</b></a>
+              <ul class="subchildren">
+                <li><a href="/ninos/accesorios/guantes?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Guantes</a></li>
+                <li><a href="/ninos/accesorios/medias?PS=48&amp;map=c,c,c&amp;O=OrderByReleaseDateDESC">Medias</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#"><b>Estilos</b></a>
+              <ul class="subchildren">
+                <li><a href="/ninos/estilos/deportivo">Deportivo</a></li>
+                <li><a href="/ninos/estilos/urbano">Urbano</a></li>
+                <li><a href="/ninos/estilos/casual">Casual</a></li>
+              </ul>
+            </li> 
+
+
+          </ul>
+        </li>
+
+          <li class="submenu"><a href="#">Marcas<span class="caret icon-arrow-down6"></span></a>
+            <ul class="children">
+              <li><a href="#"><b>Caterpillar</b></a>
+                <ul class="subchildren">
+                  <li><a href="/caterpillar/1133?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC"><b>Novedades</b></a></li>
+                  <li><a href="/hombre/caterpillar/1133?PS=48&amp;map=c,b,productClusterIds&amp;O=OrderByReleaseDateDESC">Hombre</a></li>
+                  <li><a href="/mujer/caterpillar/1133?PS=48&amp;map=c,b,productClusterIds&amp;O=OrderByReleaseDateDESC">Mujer</a></li>
+                  <li><a href="/ninos/caterpillar/1133?PS=48&amp;map=c,b,productClusterIds&amp;O=OrderByReleaseDateDESC">Niños</a></li>
+
+                  <li><a href="/caterpillar-pe"><b>Colecciones</b></a></li>
+                  <li><a href="/caterpillar-industrial">Industrial</a></li>
+                  <li><a href="/caterpillar/1061?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC">Code</a></li>
+                  <li><a href="/caterpillar/570?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC">Vapor</a></li>
+                </ul>              
+              </li>
+
+              <li><a href="#"><b>Converse</b></a>
+                <ul class="subchildren">
+                  <li><a href="/converse/1133?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC"><b>Novedades</b></a></li>
+                  <li><a href="/hombre/converse/1133?PS=48&amp;map=c,b,productClusterIds&amp;O=OrderByReleaseDateDESC">Hombre</a></li>
+                  <li><a href="/mujer/converse/1133?PS=48&amp;map=c,b,productClusterIds&amp;O=OrderByReleaseDateDESC">Mujer</a></li>
+                  <li><a href="/ninos/converse/1133?PS=48&amp;map=c,b,productClusterIds&amp;O=OrderByReleaseDateDESC">Niños</a></li>
+
+                  <li><a href="/caterpillar-pe"><b>Colecciones</b></a></li>
+                  <li><a href="/converse/640?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC">Chuck Taylor</a></li>
+                  <li><a href="/converse/171?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC">Lifestyle</a></li>
+                  <li><a href="/converse/1037?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC">Chuck 70</a></li>
+                </ul>              
+              </li>
+
+              <li><a href="#"><b>Fila</b></a>
+                <ul class="subchildren">
+                  <li><a href="/fila/1133?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC"><b>Novedades</b></a></li>
+                  <li><a href="/hombre/fila/1133?PS=48&amp;map=c,b,productClusterIds&amp;O=OrderByReleaseDateDESC">Hombre</a></li>
+                  <li><a href="/mujer/fila/1133?PS=48&amp;map=c,b,productClusterIds&amp;O=OrderByReleaseDateDESC">Mujer</a></li>
+                  <li><a href="/ni%C3%B1os/fila/1133?PS=48&amp;map=c,b,productClusterIds&amp;O=OrderByReleaseDateDESC">Niños</a></li>
+
+                  <li><a href="/fila-pe"><b>Colecciones</b></a></li>
+                  <li><a href="/fila/1124?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC">Disruptor</a></li>
+                  <li><a href="/fila/1052?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC">Ray Tracer</a></li>
+                  <li><a href="/fila/1053?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC">Electrove</a></li>
+                </ul>              
+              </li>
+
+              <li><a href="#"><b>Umbro</b></a>
+                <ul class="subchildren">
+                  <li><a href="/umbro/1133?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC"><b>Novedades</b></a></li>
+                  <li><a href="/hombre/umbro/1133?PS=48&amp;map=c,b,productClusterIds&amp;O=OrderByReleaseDateDESC">Hombre</a></li>
+                  <li><a href="/mujer/umbro?PS=48&amp;map=c,b&amp;O=OrderByReleaseDateDESC">Mujer</a></li>
+                  <li><a href="/ninos/umbro/1133?PS=48&amp;map=c,b,productClusterIds&amp;O=OrderByReleaseDateDESC">Niños</a></li>
+
+                  <li><a href="/fila-pe"><b>Colecciones</b></a></li>
+                  <li><a href="/umbro/831?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC">Fútbol</a></li>
+                  <li><a href="/umbro/178?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC">Lifestyle</a></li>
+                </ul>              
+              </li>
+
+              <li><a href="#"><b>Merrell</b></a>
+                <ul class="subchildren">
+                  <li><a href="/merrell/1133?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC"><b>Novedades</b></a></li>
+                  <li><a href="/hombre/merrell/1133?PS=48&amp;map=c,b,productClusterIds&amp;O=OrderByReleaseDateDESC">Hombre</a></li>
+                  <li><a href="/mujer/merrell/1133?PS=48&amp;map=c,b,productClusterIds&amp;O=OrderByReleaseDateDESC">Mujer</a></li>
+
+                  <li><a href="/merrell-pe"><b>Colecciones</b></a></li>
+                  <li><a href="/merrell/845?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC">Trekking</a></li>
+                  <li><a href="/merrell/695?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC">Trail running</a></li>
+                  <li><a href="/merrell/178?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC">Urban Adventure</a></li>
+                  <li><a href="/merrell/850?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC">Slip on</a></li>
+                </ul>              
+              </li>
+
+              <li><a href="#"><b>Hi Tec</b></a>
+                <ul class="subchildren">
+                  <li><a href="/hi-tec/1133?PS=48&amp;map=b,productClusterIds&amp;O=OrderByReleaseDateDESC"><b>Novedades</b></a></li>
+                  <li><a href="/hombre/hi-tec/1133?PS=48&amp;map=c,b,productClusterIds&amp;O=OrderByReleaseDateDESC">Hombre</a></li>
+                  <li><a href="/mujer/hi-tec/1133?PS=48&amp;map=c,b,productClusterIds&amp;O=OrderByReleaseDateDESC">Mujer</a></li>
+
+                  <li><a href="/hitec-pe"><b>Colecciones</b></a></li>
+                  <li><a href="/hi-tec/154?PS=48&amp;map=b,productClusterIds&amp;O=OrderByTopSaleDESC">Tarantula</a></li>
+                  <li><a href="/hi-tec/768?PS=48&amp;map=b,productClusterIds&amp;O=OrderByTopSaleDESC">OX Trail</a></li>
+                  <li><a href="/hi-tec/1015?PS=48&amp;map=b,productClusterIds&amp;O=OrderByTopSaleDESC">Quadra</a></li>
+                </ul>              
+              </li>
+
+              <li><a href="#"><b>Steve Madden</b></a>
+                <ul class="subchildren">
+                  <li><a href="/mujer/steve-madden/madden-girl/1133?PS=48&amp;map=c,b,b,productClusterIds&amp;O=OrderByReleaseDateDESC"><b>Novedades</b></a></li>
+
+                  <li><a href="/steve-madden/madden-girl/1133?PS=48&amp;map=b,b,productClusterIds&amp;O=OrderByReleaseDateDESC"><b>Colecciones</b></a></li>
+                  <li><a href="/mujer/steve-madden/madden-girl/515?PS=48&amp;map=c,b,b,productClusterIds&amp;O=OrderByReleaseDateDESC">Chunkies</a></li>
+                  <li><a href="/mujer/steve-madden/madden-girl/985?PS=48&amp;map=c,b,b,productClusterIds&amp;O=OrderByReleaseDateDESC">Tacos y tacones</a></li>
+                  <li><a href="/mujer/steve-madden/madden-girl/969?PS=48&amp;map=c,b,b,productClusterIds&amp;O=OrderByReleaseDateDESC">Plataformas</a></li>
+                </ul>              
+              </li>
+
+
+            </ul>
+        </li>
+
+        <li class="submenu">
+            <a href="#">Outlet<span class="caret icon-arrow-down6"></span></a>
+            <ul class="children">
+              <li><a href="#"><b>Genero</b></a>
+                <ul class="subchildren">
+                  <li><a href="/outlet/hombre">Hombre</a></li>
+                  <li><a href="/outlet/mujer">Mujer</a></li>
+                  <li><a href="/outlet/nino">Niños</a></li>
+                </ul>              
+              </li>
+
+              <li><a href="#"><b>Marcas</b></a>
+                <ul class="subchildren">
+                  <li><a href="/outlet/converse">Converse</a></li>
+                  <li><a href="/outlet/caterpillar">Caterpillar</a></li>
+                  <li><a href="/outlet/fila">Fila</a></li>
+                  <li><a href="/outlet/umbro">Umbro</a></li>
+                  <li><a href="/outlet/merrell">Merrell</a></li>
+                  <li><a href="/outlet/steve-madden">Steve Madden</a></li>
+                  <li><a href="/saucony?PS=48&amp;map=b&amp;O=OrderByReleaseDateDESC">Saucony</a></li>
+                  <li><a href="/cole-haan?PS=48&amp;map=b&amp;O=OrderByReleaseDateDESC">Cole Haan</a></li>
+                </ul>              
+              </li>
+
+            </ul>
+        </li>
+
+        <li><a href="#">Gift Card</a></li>
+      </ul>
+    </nav>
+  </header>
+</body>
+<script type="text/javascript" async="" charset="utf-8" id="utag_428" src="https://sc-static.net/scevent.min.js"></script>
+<script>
+
+$(document).ready(main);
+
+var contador = 1;
+var ancho = $(document).width();
+
+function main (){
+
+  if (ancho >= 800) {
+      $('.menu_bar').hover(function(){
+        // $('nav').toggle(); Forma Sencilla de aparecer y desaparecer
+        
+        if (contador == 1){
+          $('nav').animate({
+            left: '0'
+          });
+          contador = 0;
+        } else {
+          contador = 1;
+          $('nav').animate({
+            left: '-100%'
+          });
+        };
+        
+      });
+      // Mostramos y ocultamos submenus
+      /*$('.submenu').click(function(){
+        $(this).children('.children').slideToggle();
+      });*/
+  }else{
+    $('.menu_bar').click(function(){
+      // $('nav').toggle(); Forma Sencilla de aparecer y desaparecer
+      
+      if (contador == 1){
+        $('nav').animate({
+          left: '0'
+        });
+        contador = 0;
+      } else {
+        contador = 1;
+        $('nav').animate({
+          left: '-100%'
+        });
+      };
+      
+    });
+    // Mostramos y ocultamos submenus
+    $('.submenu').click(function(){
+      $(this).children('.children').slideToggle();
+      //$('.children ul').addClass('children');
+    });
+    $('.children').click(function(){
+      $(this).children('li .subchildren').slideToggle();
+      $('li').children('.subchildren').slideToggle();
+      //$('.children ul').addClass('children');
+    });
+    
+  }
+
+};
+</script>
+  
+</html>
